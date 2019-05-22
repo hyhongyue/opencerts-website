@@ -1,9 +1,12 @@
 import dynamic from "next/dynamic";
+import { addDirToTemplatePath } from "template-utils/addDirToTemplatePath";
 
-const sussFullTime2019 = dynamic(
+const SUSSFT2019 = dynamic(() =>
   import("./2019-SUSS-FT-Template" /* webpackChunkName: "suss-Templates" */)
 );
 
-export default {
-  "2019-SUSS-FT-Template": sussFullTime2019
+const templates = {
+  "2019-SUSS-FT-Template": SUSSFT2019
 };
+
+export default addDirToTemplatePath("suss", templates);
