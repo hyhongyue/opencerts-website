@@ -1,6 +1,11 @@
 import { addDirToTemplatePath } from "template-utils/addDirToTemplatePath";
 
-import singaporetech from "./singaporetech";
+import myuni from "./myuni";
 import np from "./np";
+import singaporetech from "./singaporetech";
 
-export default addDirToTemplatePath("edu", { ...singaporetech, ...np });
+export default addDirToTemplatePath("edu", {
+  ...myuni,
+  ...np,
+  ...singaporetech
+});

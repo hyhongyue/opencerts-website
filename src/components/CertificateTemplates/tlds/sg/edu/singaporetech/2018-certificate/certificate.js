@@ -37,13 +37,13 @@ const timesNewRoman18Pt = {
   color: "black"
 };
 
-const timesNewRoman18PtRed = {
+/* const timesNewRoman18PtRed = {
   fontFamily: "Times New Roman",
   fontSize: "24px",
   fontWeight: "bold",
   textAlign: "center",
   color: "red"
-};
+}; */
 
 const helvetica12Pt = {
   fontFamily: "Helvetica",
@@ -100,7 +100,7 @@ const Template = ({ certificate }) => (
         className="row d-flex justify-content-center"
         style={{ marginTop: "2rem" }}
       >
-        <span style={garamondItalic18Pt}>This is to certify that</span>
+        <span style={garamondItalic18Pt}>This is to certify that hohoho</span>
       </div>
       <div className="row d-flex justify-content-center">
         <span style={timesNewRoman18Pt}>{certificate.recipient.name}</span>
@@ -129,11 +129,11 @@ const Template = ({ certificate }) => (
           {certificate.additionalData.confDate}
         </p>
       </div>
-      {certificate.additionalData.degreeName2.length === 0 && (
+      {/* certificate.additionalData.degreeName2.length === 0 && (
         <div className="row d-flex justify-content-center">
           <span style={timesNewRoman18PtRed}>&nbsp;</span>
         </div>
-      )}
+      ) */}
       <div className="row" style={{ marginTop: "1rem", marginBottom: "-2rem" }}>
         <div className="col-md-4 text-left">
           <br />
