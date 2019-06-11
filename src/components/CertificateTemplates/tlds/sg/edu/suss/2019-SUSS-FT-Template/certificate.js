@@ -1,65 +1,144 @@
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 import backgroundImg from "./resources";
+import {
+  SUSS_LOGO,
+  presidentSampleSign,
+  registrarSampleSign,
+  SEAL
+} from "./images";
+
+const borderStyle = {
+	border: 5, 
+	borderColor: "#8C9093", 
+	borderStyle: "solid"
+};
+
+const logoImgStyle = {
+	width: "40%",
+	height: "50%"
+};
+
+const staticDataTextStyle = {
+	fontFamily: "Cardo",
+	fontStyle: "italic",
+	fontSize: "15pt",
+	textAlign: "center",
+	color: "#003B5C"
+};
+
+const dynamicDataTextStyle = {
+    fontFamily: "Arial",
+	fontWeight: "bold",
+	fontSize: "20pt",
+	textAlign: "center",
+	color: "#003B5C"
+};
+
+const degreeClassTextStyle = {
+    fontFamily: "Arial",
+	fontWeight: "bold",
+	fontSize: "15pt",
+	textAlign: "center",
+	color: "#003B5C"
+};
+
+const confDateTextStyle = {
+    fontFamily: "Arial",
+	fontWeight: "bold",
+	fontSize: "10pt",
+	textAlign: "center",
+	color: "#003B5C"
+};
+
+const lastRowStyle = {
+	paddingBottom: "50px"
+};
+
+const signTextStyle = {
+	fontFamily: "Cardo",
+	fontSize: "15pt",
+	textAlign: "center",
+	color: "#003B5C"
+};
+
+const CertNoTextStyle = {
+    fontFamily: "Arial",
+	fontWeight: "bold",
+	color: "#003B5C"
+};
+
+const resizeSeal = {
+	height: "250px"
+};
 
 const Template = ({ certificate }) => (
-  <div
-    className="p-2"
-    style={{
-      backgroundImage: `url('${backgroundImg}')`,
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      border: "10px solid #787878"
-    }}
-  >
-    <div
-      className="p-2"
-      style={{
-        border: "5px solid #787878"
-      }}
-    >
-      <div className="my-5 m-lg-5 text-center">
-        <img
-          src="/static/images/opencertslogo.svg"
-          className="w-100"
-          style={{ maxWidth: 600 }}
-        />
+  <div className="container" style={ borderStyle } >
+      <div className="row d-flex justify-content-center">
+        <img src={ SUSS_LOGO } style={ logoImgStyle } />
       </div>
-      <div className="h5 mb-4 mb-lg-5 d-flex justify-content-center">
-        <i>This is to certify that hohoho</i>
+	  <div
+        className="row d-flex justify-content-center">
+        <span style={ staticDataTextStyle } >This is to certify that</span>
       </div>
-      <div className="h3 mb-4 mb-lg-5 d-flex justify-content-center">
-        <b>{certificate.recipient.name}</b>
+	  <div className="row">&nbsp;</div>
+	  <div className="row d-flex justify-content-center">
+        <span style={ dynamicDataTextStyle }>{ certificate.recipient.name }</span>
       </div>
-      <div className="h5 mb-4 mb-lg-5 d-flex justify-content-center">
-        <i>has successfully completed the</i>
+	  <div className="row">&nbsp;</div>
+	  <div className="row d-flex justify-content-center">
+        <span style={ staticDataTextStyle } >
+          having completed the requirements of the <br/	> programme of study in
+        </span>
       </div>
-      <div className="h1 mb-4 mb-lg-5 d-flex justify-content-center">
-        Certified OpenCerts Associate
+	   <div className="row">&nbsp;</div>
+	    <div className="row d-flex justify-content-center">
+        <span style={ dynamicDataTextStyle }> { certificate.additionalData.degreeName }
+        </span>
       </div>
-      <div className="h5 mb-4 mb-lg-5 d-flex justify-content-center">
-        <i>certification through training administered by</i>
+	   <div className="row">&nbsp;</div>
+	  <div className="row d-flex justify-content-center">
+        <span style={ staticDataTextStyle } >
+          was admitted to the Degree of
+        </span>
       </div>
-      <div className="d-flex justify-content-between m-3 p-2 mb-5">
-        <div className="col-1" />
-        <div className="col-5 my-5">
-          <img className="w-100" src="/static/images/logo-govtech.png" />
-        </div>
-        <div className="col-2" />
-        <div className="col-4 text-center">
-          <img className="w-100" src={certificate.additionalData.signature} />
-          <hr className="m-1" />
-          <div>
-            <b>{certificate.additionalData.signatory}</b>
-          </div>
-          <div>{certificate.additionalData.signatoryPosition}</div>
-        </div>
+	  <div className="row">&nbsp;</div>
+	  <div className="row d-flex justify-content-center">
+        <span style={ dynamicDataTextStyle }>
+          { certificate.additionalData.degreeName2 }
+        </span>
       </div>
-
-      <div className="d-flex flex-row-reverse my-5">
-        Dated {format(certificate.issuedOn, "DD/MM/YYYY")}
+	   <div className="row d-flex justify-content-center">
+        <span style={ degreeClassTextStyle }>
+          { certificate.additionalData.degreeClssification }
+        </span>
       </div>
-    </div>
+	  <div className="row d-flex justify-content-center">
+        <span style={ confDateTextStyle }>
+          22 MARCH 2018
+        </span>
+      </div>
+	  
+	  <div className="row align-items-end" style = { lastRowStyle }>
+       <span className="col-md-3 text-center">
+          <img src={ presidentSampleSign }/> <br/>
+		  <span style={ signTextStyle }> President </span>
+        </span>
+		
+		<span className="col-md-3 text-center">
+          <img src={ registrarSampleSign }/> <br/>
+		  <span style={ signTextStyle }> Registrar </span>
+        </span>
+		 
+		<span className="col-md-6 text-center">
+		  <img src={ SEAL } style = { resizeSeal }/> <br/>
+          <span style={ CertNoTextStyle }>Certificate Number: &nbsp; 
+		  </span>
+			<span style={ CertNoTextStyle }>
+				{ certificate.id }
+			</span>
+        </span>	
+      </div>
   </div>
 );
 
