@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 import { MultiCertificateRenderer } from "template-utils/MultiCertificateRenderer";
-import Certificate from "./certificate";
+import Transcript from "./transcript";
+import TranscriptInfo from "./trans-info";
 
 const templates = [
   {
     id: "certificate",
     label: "Certificate",
-    template: Certificate
+    template: Transcript
+  },
+
+  {
+    id: "transcript-info",
+    label: "Transcript Information",
+    template: TranscriptInfo
   }
 ];
 
