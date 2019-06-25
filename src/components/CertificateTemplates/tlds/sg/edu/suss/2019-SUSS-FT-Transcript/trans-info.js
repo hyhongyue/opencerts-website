@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const topBuffer = {
-  marginTop: "15px"
+  marginTop: "25px"
 };
 
 const tdStyle = {
@@ -11,17 +11,29 @@ const tdStyle = {
   paddingTop: "10px"
 };
 
+const blueFont = {
+  color: "#003B5C"
+}
+
+const heading = {
+  fontWeight: "bold"
+}
+
+const boldHeading = {
+  fontWeight: "bold"
+}
+
 const transInfo = ({ certificate }) => (
-  <div className="container">
+  <div className="container" style={blueFont}>
     <div className="row">
       <div className="col d-flex justify-content-center">
-        <h1>Transcript Information</h1>
+        <h1 style={heading}>Transcript Information</h1>
       </div>
     </div>
 
     <div className="row" style={topBuffer}>
       <div className="col">
-        <h2>Credit units and levels</h2>
+        <h2 style={heading}>Credit units and levels</h2>
         <p>
           The University uses a credit unit (cu) system. The credit unit
           requirements are:
@@ -33,36 +45,36 @@ const transInfo = ({ certificate }) => (
               <td />
               <td style={tdStyle}>
                 <p>
-                  Basic Degree
+                  <b>Basic Degree</b>
                   <br />
                   (Stduents admitted prior 2007)
                 </p>
               </td>
               <td style={tdStyle}>
                 <p>
-                  Basic Degree
+                  <b>Basic Degree</b>
+                  <br />
+                  (Stduents admitted from 2007)
+                </p>
+              </td>
+              <td style={tdStyle}>
+                <p>
+                  <b>Honours Degree</b>
                   <br />
                   (Stduents admitted prior 2007)
                 </p>
               </td>
               <td style={tdStyle}>
                 <p>
-                  Basic Degree
+                  <b>Honours Degree</b>
                   <br />
-                  (Stduents admitted prior 2007)
-                </p>
-              </td>
-              <td style={tdStyle}>
-                <p>
-                  Basic Degree
-                  <br />
-                  (Stduents admitted prior 2007)
+                  (Stduents admitted from 2007)
                 </p>
               </td>
             </tr>
 
             <tr>
-              <td style={tdStyle}>Full time programmes</td>
+              <td style={tdStyle}><b>Full time programmes</b></td>
               <td style={tdStyle}>NA</td>
               <td style={tdStyle}>NA</td>
               <td style={tdStyle}>NA</td>
@@ -70,7 +82,7 @@ const transInfo = ({ certificate }) => (
             </tr>
 
             <tr>
-              <td style={tdStyle}>Part time programmes</td>
+              <td style={tdStyle}><b>Part time programmes</b></td>
               <td style={tdStyle}>120 cu</td>
               <td style={tdStyle}>130 cu</td>
               <td style={tdStyle}>160 cu</td>
@@ -83,7 +95,7 @@ const transInfo = ({ certificate }) => (
 
     <div className="row" style={topBuffer}>
       <div className="col">
-        <h2>Total number of units</h2>
+        <h2 style={heading}>Total number of units</h2>
         <p>
           This includes all the credit units that have been counted towards this
           qualification, including any credit transfer, subordinate award, and
@@ -94,7 +106,7 @@ const transInfo = ({ certificate }) => (
 
     <div className="row" style={topBuffer}>
       <div className="col">
-        <h2>Grade Point Average</h2>
+        <h2 style={heading}>Grade Point Average</h2>
         <p>
           The GPA is the average grade point of all courses taken by the
           student.
@@ -104,7 +116,7 @@ const transInfo = ({ certificate }) => (
 
     <div className="row" style={topBuffer}>
       <div className="col">
-        <h2>Grade Legend</h2>
+        <h2 style={heading}>Grade Legend</h2>
         <table className="w-100" border="1">
           <tbody>
             <tr>
@@ -278,7 +290,7 @@ const transInfo = ({ certificate }) => (
         </p>
       </div>
     </div>
-  </div>
+  </div >
 );
 
 transInfo.propTypes = {

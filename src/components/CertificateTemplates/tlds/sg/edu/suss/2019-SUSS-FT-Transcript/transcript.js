@@ -6,16 +6,18 @@ import { SUSS_LOGO } from "./images";
 const engLocale = require("date-fns/locale/en");
 
 const logoImgStyle = {
-  width: "100%",
+  width: "35%",
   height: "auto",
   marginLeft: "15px"
 };
 
+const topBuffer = {
+  marginTop: "15px"
+};
+
 const officialTransStyle = {
-  fontFamily: "Montserrat-Medium",
-  fontSize: "17pt",
+  fontFamily: "Montserrat",
   fontWeight: "bold",
-  textAlign: "center",
   color: "#003B5C"
 };
 
@@ -47,27 +49,21 @@ const Template = ({ certificate }) => {
 
   return (
     <div className="container">
+      {/*SUSS Logo and Title*/}
       <div className="row">
-        <div className="col-4" />
-
-        <div className="col-4">
+        <div className="col d-flex justify-content-center">
           <img src={SUSS_LOGO} style={logoImgStyle} />
         </div>
-
-        <div className="col-4" />
       </div>
 
       <div className="row">
-        <div className="col-3" />
-
-        <div className="col-6">
-          <p style={officialTransStyle}>OFFICIAL TRANSCRIPT</p>
+        <div className="col d-flex justify-content-center">
+          <h1 style={officialTransStyle}>OFFICIAL TRANSCRIPT</h1>
         </div>
-
-        <div className="col-3" />
       </div>
 
-      <div className="row">
+      {/* Recipient Information */}
+      <div className="row" style={topBuffer}>
         <div className="col">
           {certificate.recipient.name.toUpperCase()} <br />
           {certificate.recipient.address.toUpperCase()} <br />
@@ -76,34 +72,33 @@ const Template = ({ certificate }) => {
         </div>
       </div>
 
-      <br />
-
-      <div className="row">
+      <div className="row" style={topBuffer}>
         <div className="col">
-          Name <br />
-          <br />
-          Personal Identifier
-        </div>
-        <div className="col">
-          : {certificate.recipient.name.toUpperCase()} <br />
-          <br />: {certificate.recipient.personalIdentifier}
-        </div>
-        <div className="col">
-          NRIC/FIN/PP No. <br />
-          Date of Issue <br />
-          Page Count <br />
-        </div>
-        <div className="col">
-          : {certificate.recipient.nric} <br />:{" "}
-          {format(certificate.issuedOn, "DD MMMM YYYY", { locale: engLocale })}{" "}
-          <br />
-          : Page 1 of 2 <br />
+          <table className="w-100">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td>: {certificate.recipient.name.toUpperCase()}</td>
+                <th>NRIC/FIN/PP No.</th>
+                <td>: {certificate.recipient.nric}</td>
+              </tr>
+              <tr>
+                <td colSpan="2"></td>
+                <th>Date of Issue</th>
+                <td>: {format(certificate.issuedOn, "DD MMMM YYYY", { locale: engLocale })}</td>
+              </tr>
+              <tr>
+                <th>Personal Identifier</th>
+                <td>: {certificate.recipient.personalIdentifier}</td>
+                <th>Page Count</th>
+                <td>: Page 1 of 2</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <br />
-
-      <div className="row">
+      <div className="row" style={topBuffer}>
         <div className="col">
           <p>
             This transcript confirms that the student named above has
