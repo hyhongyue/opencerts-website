@@ -11,19 +11,22 @@ const tdStyle = {
   paddingTop: "10px"
 };
 
+const tdStyleHeader = {
+  paddingLeft: "35px",
+  paddingRight: "35px",
+  paddingBottom: "0px",
+  paddingTop: "10px"
+};
+
 const blueFont = {
   color: "#003B5C"
-}
+};
 
 const heading = {
   fontWeight: "bold"
-}
+};
 
-const boldHeading = {
-  fontWeight: "bold"
-}
-
-const transInfo = ({ certificate }) => (
+const transInfo = () => (
   <div className="container" style={blueFont}>
     <div className="row">
       <div className="col d-flex justify-content-center">
@@ -43,28 +46,28 @@ const transInfo = ({ certificate }) => (
           <tbody>
             <tr>
               <td />
-              <td style={tdStyle}>
+              <td style={tdStyleHeader}>
                 <p>
                   <b>Basic Degree</b>
                   <br />
                   (Stduents admitted prior 2007)
                 </p>
               </td>
-              <td style={tdStyle}>
+              <td style={tdStyleHeader}>
                 <p>
                   <b>Basic Degree</b>
                   <br />
                   (Stduents admitted from 2007)
                 </p>
               </td>
-              <td style={tdStyle}>
+              <td style={tdStyleHeader}>
                 <p>
                   <b>Honours Degree</b>
                   <br />
                   (Stduents admitted prior 2007)
                 </p>
               </td>
-              <td style={tdStyle}>
+              <td style={tdStyleHeader}>
                 <p>
                   <b>Honours Degree</b>
                   <br />
@@ -74,7 +77,9 @@ const transInfo = ({ certificate }) => (
             </tr>
 
             <tr>
-              <td style={tdStyle}><b>Full time programmes</b></td>
+              <td style={tdStyle}>
+                <b>Full time programmes</b>
+              </td>
               <td style={tdStyle}>NA</td>
               <td style={tdStyle}>NA</td>
               <td style={tdStyle}>NA</td>
@@ -82,7 +87,9 @@ const transInfo = ({ certificate }) => (
             </tr>
 
             <tr>
-              <td style={tdStyle}><b>Part time programmes</b></td>
+              <td style={tdStyle}>
+                <b>Part time programmes</b>
+              </td>
               <td style={tdStyle}>120 cu</td>
               <td style={tdStyle}>130 cu</td>
               <td style={tdStyle}>160 cu</td>
@@ -290,7 +297,7 @@ const transInfo = ({ certificate }) => (
         </p>
       </div>
     </div>
-  </div >
+  </div>
 );
 
 transInfo.propTypes = {

@@ -6,7 +6,7 @@ import TranscriptInfo from "./trans-info";
 const templates = [
   {
     id: "certificate",
-    label: "Certificate",
+    label: "Transcript",
     template: Transcript
   },
 

@@ -31,7 +31,6 @@ const boldLabels = {
 
 const Template = ({ certificate }) => {
   // Declare what will be needed in the Transcript
-
   const transcriptData = get(certificate, "transcript", []);
 
   // Rendering an array of transcript data
@@ -49,7 +48,6 @@ const Template = ({ certificate }) => {
 
   return (
     <div className="container">
-      {/*SUSS Logo and Title*/}
       <div className="row">
         <div className="col d-flex justify-content-center">
           <img src={SUSS_LOGO} style={logoImgStyle} />
@@ -62,7 +60,6 @@ const Template = ({ certificate }) => {
         </div>
       </div>
 
-      {/* Recipient Information */}
       <div className="row" style={topBuffer}>
         <div className="col">
           {certificate.recipient.name.toUpperCase()} <br />
@@ -83,9 +80,14 @@ const Template = ({ certificate }) => {
                 <td>: {certificate.recipient.nric}</td>
               </tr>
               <tr>
-                <td colSpan="2"></td>
+                <td colSpan="2" />
                 <th>Date of Issue</th>
-                <td>: {format(certificate.issuedOn, "DD MMMM YYYY", { locale: engLocale })}</td>
+                <td>
+                  :{" "}
+                  {format(certificate.issuedOn, "DD MMMM YYYY", {
+                    locale: engLocale
+                  })}
+                </td>
               </tr>
               <tr>
                 <th>Personal Identifier</th>
