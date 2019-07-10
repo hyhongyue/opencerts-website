@@ -18,16 +18,18 @@ const tdStyleHeader = {
   paddingTop: "10px"
 };
 
-const blueFont = {
-  color: "#003B5C"
-};
-
 const heading = {
   fontWeight: "bold"
 };
 
+const containerStyle = {
+  width: "794px",
+  height: "auto",
+  color: "#003B5C"
+};
+
 const transInfo = () => (
-  <div className="container" style={blueFont}>
+  <div className="container" style={containerStyle}>
     <div className="row">
       <div className="col d-flex justify-content-center">
         <h1 style={heading}>Transcript Information</h1>

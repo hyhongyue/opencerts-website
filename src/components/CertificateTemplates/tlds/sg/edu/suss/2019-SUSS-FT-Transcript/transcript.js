@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 import { get } from "lodash";
 import { format } from "date-fns";
-import { SUSS_LOGO } from "./images";
+import { SUSS_LOGO } from "../common/images";
 
 const engLocale = require("date-fns/locale/en");
 
-const logoImgStyle = {
-  width: "35%",
-  height: "auto",
-  marginLeft: "15px"
+const logoStyle = {
+  width: "39.02mm",
+  height: "19.756mm"
 };
 
 const topBuffer = {
@@ -16,9 +15,11 @@ const topBuffer = {
 };
 
 const officialTransStyle = {
+  marginTop: "15px",
   fontFamily: "Montserrat",
   fontWeight: "bold",
-  color: "#003B5C"
+  color: "#003B5C",
+  fontSize: "17pt"
 };
 
 const centerTransData = {
@@ -27,6 +28,19 @@ const centerTransData = {
 
 const boldLabels = {
   fontWeight: "bold"
+};
+
+const headerWidth = {
+  width: "130px"
+};
+
+const containerStyle = {
+  width: "794px",
+  height: "auto"
+};
+
+const dateStyle = {
+  width: "105px"
 };
 
 const Template = ({ certificate }) => {
@@ -46,11 +60,42 @@ const Template = ({ certificate }) => {
     </tr>
   ));
 
+  // Rendering the # section
+  function displayHexSection() {
+    for (const [index, value] of transcriptData.entries()) {
+      <Element key={index} />;
+      if (value.result === "#") {
+        return (
+          <tr>
+            <td colSpan="7"># Exempted from course</td>
+          </tr>
+        );
+      }
+    }
+  }
+
+  // Rendering the * section
+  function displayStarSection() {
+    for (const [index, value] of transcriptData.entries()) {
+      <Element key={index} />;
+      if (value.creditUnits === "*") {
+        return (
+          <tr>
+            <td colSpan="7">
+              * Additional course taken, not included in grautation
+              requirements.
+            </td>
+          </tr>
+        );
+      }
+    }
+  }
+
   return (
-    <div className="container">
+    <div className="container" style={containerStyle}>
       <div className="row">
         <div className="col d-flex justify-content-center">
-          <img src={SUSS_LOGO} style={logoImgStyle} />
+          <img src={SUSS_LOGO} style={logoStyle} />
         </div>
       </div>
 
@@ -71,18 +116,18 @@ const Template = ({ certificate }) => {
 
       <div className="row" style={topBuffer}>
         <div className="col">
-          <table className="w-100">
+          <table className="w-120">
             <tbody>
               <tr>
-                <th>Name</th>
+                <th style={headerWidth}>Name</th>
                 <td>: {certificate.recipient.name.toUpperCase()}</td>
-                <th>NRIC/FIN/PP No.</th>
+                <th style={headerWidth}>NRIC/FIN/PP No.</th>
                 <td>: {certificate.recipient.nric}</td>
               </tr>
               <tr>
                 <td colSpan="2" />
-                <th>Date of Issue</th>
-                <td>
+                <th style={headerWidth}>Date of Issue</th>
+                <td style={dateStyle}>
                   :{" "}
                   {format(certificate.issuedOn, "DD MMMM YYYY", {
                     locale: engLocale
@@ -90,9 +135,9 @@ const Template = ({ certificate }) => {
                 </td>
               </tr>
               <tr>
-                <th>Personal Identifier</th>
+                <th style={headerWidth}>Personal Identifier</th>
                 <td>: {certificate.recipient.personalIdentifier}</td>
-                <th>Page Count</th>
+                <th style={headerWidth}>Page Count</th>
                 <td>: Page 1 of 2</td>
               </tr>
             </tbody>
@@ -144,6 +189,9 @@ const Template = ({ certificate }) => {
                     <b>{certificate.additionalData.cgpa}</b>
                   </td>
                 </tr>
+
+                {displayHexSection()}
+                {displayStarSection()}
 
                 <tr>
                   <td colSpan="7">
