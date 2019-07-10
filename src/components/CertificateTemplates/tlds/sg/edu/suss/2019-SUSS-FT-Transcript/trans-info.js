@@ -5,15 +5,15 @@ const topBuffer = {
 };
 
 const tdStyle = {
-  paddingLeft: "35px",
-  paddingRight: "35px",
+  paddingLeft: "10px",
+  paddingRight: "10px",
   paddingBottom: "10px",
   paddingTop: "10px"
 };
 
 const tdStyleHeader = {
-  paddingLeft: "35px",
-  paddingRight: "35px",
+  paddingLeft: "10px",
+  paddingRight: "10px",
   paddingBottom: "0px",
   paddingTop: "10px"
 };
@@ -130,18 +130,18 @@ const transInfo = () => (
           <tbody>
             <tr>
               <th colSpan="2" style={tdStyle}>
-                Grading System
+                <center>Grading System</center>
               </th>
               <th className="text-center" style={tdStyle}>
                 Grade Point
               </th>
             </tr>
             <tr>
-              <td style={tdStyle}>85 - 100 marks</td>
-              <td className="text-center" style={tdStyle}>
+              <td width="50%" style={tdStyle}>85 - 100 marks</td>
+              <td width="25%" className="text-center" style={tdStyle}>
                 A+
               </td>
-              <td className="text-center" style={tdStyle}>
+              <td width="25%" className="text-center" style={tdStyle}>
                 5.0
               </td>
             </tr>

@@ -136,7 +136,7 @@ const Template = ({ certificate }) => {
               </tr>
               <tr>
                 <th style={headerWidth}>Personal Identifier</th>
-                <td>: {certificate.recipient.personalIdentifier}</td>
+                <td>: {certificate.recipient.studentId}</td>
                 <th style={headerWidth}>Page Count</th>
                 <td>: Page 1 of 2</td>
               </tr>
@@ -218,9 +218,9 @@ const Template = ({ certificate }) => {
       </div>
 
       <div className="row">
-        <div className="col-4">{certificate.additionalData.degreeName2}</div>
+        <div className="col-4">{certificate.additionalData.degreeType}</div>
         <div className="col-4">
-          {certificate.additionalData.degreeClssification}
+          {certificate.additionalData.degreeClass}
         </div>
         <div className="col-4">
           {certificate.additionalData.dateOfConferment}
