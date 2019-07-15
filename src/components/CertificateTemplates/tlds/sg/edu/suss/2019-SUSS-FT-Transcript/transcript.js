@@ -120,7 +120,7 @@ const Template = ({ certificate }) => {
             <tbody>
               <tr>
                 <th style={headerWidth}>Name</th>
-                <td>: {certificate.recipient.name.toUpperCase()}</td>
+                <td width="52%">: {certificate.recipient.name.toUpperCase()}</td>
                 <th style={headerWidth}>NRIC/FIN/PP No.</th>
                 <td>: {certificate.recipient.nric}</td>
               </tr>
