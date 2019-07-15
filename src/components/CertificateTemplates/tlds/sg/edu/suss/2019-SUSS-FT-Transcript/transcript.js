@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { get } from "lodash";
 import { format } from "date-fns";
 import { SUSS_LOGO } from "../common/images";
+import { DUMMY_SIGNATURE } from "../common/images";
 
 const engLocale = require("date-fns/locale/en");
 
@@ -229,7 +230,7 @@ const Template = ({ certificate }) => {
 
       <div className="row">
         <div className="col-4">
-          <img src={certificate.additionalData.registraSignature} />
+          <img src={DUMMY_SIGNATURE} />
           <hr />
           <div> Registrar </div>
         </div>
