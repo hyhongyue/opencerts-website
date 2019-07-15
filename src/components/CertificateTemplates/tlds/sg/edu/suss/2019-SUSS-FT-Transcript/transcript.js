@@ -61,8 +61,8 @@ const Template = ({ certificate }) => {
   ));
 
   // Rendering the # section
-  function displayHexSection() {
-    for (const [index, value] of transcriptData.entries()) {
+  function displayHexSectionMod(data) {
+    for (const [index, value] of data.entries()) {
       <Element key={index} />;
       if (value.result === "#") {
         return (
@@ -75,8 +75,8 @@ const Template = ({ certificate }) => {
   }
 
   // Rendering the * section
-  function displayStarSection() {
-    for (const [index, value] of transcriptData.entries()) {
+  function displayStarSectionMod(data) {
+    for (const [index, value] of data.entries()) {
       <Element key={index} />;
       if (value.creditUnits === "*") {
         return (
@@ -190,8 +190,8 @@ const Template = ({ certificate }) => {
                   </td>
                 </tr>
 
-                {displayHexSection()}
-                {displayStarSection()}
+                {displayHexSectionMod(certificate.transcript)}
+                {displayStarSectionMod(certificate.transcript)}
 
                 <tr>
                   <td colSpan="7">
