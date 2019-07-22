@@ -83,7 +83,7 @@ const Template = ({ certificate }) => {
         return (
           <tr>
             <td colSpan="7">
-              * Additional course taken, not included in grautation
+              * Additional course taken, not included in gradutation
               requirements.
             </td>
           </tr>
@@ -152,7 +152,7 @@ const Template = ({ certificate }) => {
             This transcript confirms that the student named above has
             succesfully completed the listed courses leading to the
             qualification shown below. For an explanation of the terms and
-            symbols used, please see the other side of this trascript.
+            symbols used, please see the other side of this transcript.
           </p>
         </div>
       </div>
