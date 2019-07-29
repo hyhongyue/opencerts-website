@@ -110,7 +110,7 @@ const Template = ({ certificate }) => {
         <div className="col">
           {certificate.recipient.name.toUpperCase()} <br />
           {certificate.recipient.address.toUpperCase()} <br />
-          {certificate.recipient.unitNo} <br />
+          {certificate.recipient.address2} <br />
           SINGAPORE {certificate.recipient.postalCode} <br />
         </div>
       </div>
