@@ -172,6 +172,27 @@ const Template = ({ certificate }) => {
                   <th style={centerTransData}>Grade Point</th>
                 </tr>
                 {transcriptSection}
+                {certificate.additionalData.numOfCreditRecognition !== undefined && (
+                  <tr>
+                    <td style={boldLabels} colSpan="4">
+                      Credit Recognition taken from approved institutions:{" "}
+                    </td>
+                    <td style={centerTransData}>
+                      <b>{certificate.additionalData.numOfCreditRecognition}</b>
+                    </td>
+                  </tr>
+                )}
+
+                {certificate.additionalData.numOfCreditExempted !== undefined && (
+                  <tr>
+                    <td style={boldLabels} colSpan="4">
+                      Credit Exemption:{" "}
+                    </td>
+                    <td style={centerTransData}>
+                      <b>{certificate.additionalData.numOfCreditExempted}</b>
+                    </td>
+                  </tr>
+                )}
 
                 <tr>
                   <td style={boldLabels} colSpan="4">
