@@ -3,46 +3,10 @@ import { get } from "lodash";
 import { format } from "date-fns";
 import { SUSS_LOGO } from "../common/images";
 import { DUMMY_SIGNATURE } from "../common/images";
+import * as consts from "../common/transcripStyle";
+import * as functions from "../common/functions"
 
 const engLocale = require("date-fns/locale/en");
-
-const logoStyle = {
-  width: "39.02mm",
-  height: "19.756mm"
-};
-
-const topBuffer = {
-  marginTop: "15px"
-};
-
-const officialTransStyle = {
-  marginTop: "15px",
-  fontFamily: "Montserrat",
-  fontWeight: "bold",
-  color: "#003B5C",
-  fontSize: "17pt"
-};
-
-const centerTransData = {
-  textAlign: "center"
-};
-
-const boldLabels = {
-  fontWeight: "bold"
-};
-
-const headerWidth = {
-  width: "130px"
-};
-
-const containerStyle = {
-  width: "794px",
-  height: "auto"
-};
-
-const dateStyle = {
-  width: "105px"
-};
 
 const Template = ({ certificate }) => {
   // Declare what will be needed in the Transcript
@@ -70,61 +34,30 @@ const Template = ({ certificate }) => {
   const transcriptSection = transcriptData.map((t, i) => (
     <tr key={i}>
       <td>{t.year}</td>
-      <td style={centerTransData}>{t.semester}</td>
+      <td style={consts.centerTransData}>{t.semester}</td>
       <td>{t.courseCode}</td>
       <td>{t.name}</td>
-      <td style={centerTransData}>{t.creditUnits}</td>
-      <td style={centerTransData}>{t.result}</td>
-      <td style={centerTransData}>{t.gradePoint}</td>
+      <td style={consts.centerTransData}>{t.creditUnits}</td>
+      <td style={consts.centerTransData}>{t.result}</td>
+      <td style={consts.centerTransData}>{t.gradePoint}</td>
     </tr>
   ));
 
-  // Rendering the # section
-  function displayHexSectionMod(data) {
-    for (const [index, value] of data.entries()) {
-      <Element key={index} />;
-      if (value.result === "#") {
-        return (
-          <tr>
-            <td colSpan="7"># Exempted from course</td>
-          </tr>
-        );
-      }
-    }
-  }
-
-  // Rendering the * section
-  function displayStarSectionMod(data) {
-    for (const [index, value] of data.entries()) {
-      <Element key={index} />;
-      if (value.creditUnits === "*") {
-        return (
-          <tr>
-            <td colSpan="7">
-              * Additional course taken, not included in gradutation
-              requirements.
-            </td>
-          </tr>
-        );
-      }
-    }
-  }
-
   return (
-    <div className="container" style={containerStyle}>
+    <div className="container" style={consts.containerStyle}>
       <div className="row">
         <div className="col d-flex justify-content-center">
-          <img src={SUSS_LOGO} style={logoStyle} />
+          <img src={SUSS_LOGO} style={consts.logoStyle} />
         </div>
       </div>
 
       <div className="row">
         <div className="col d-flex justify-content-center">
-          <h1 style={officialTransStyle}>OFFICIAL TRANSCRIPT</h1>
+          <h1 style={consts.officialTransStyle}>OFFICIAL TRANSCRIPT</h1>
         </div>
       </div>
 
-      <div className="row" style={topBuffer}>
+      <div className="row" style={consts.topBuffer}>
         <div className="col">
           {recipientName} <br />
           {recipientAdd} <br />
@@ -134,26 +67,26 @@ const Template = ({ certificate }) => {
         </div>
       </div>
 
-      <div className="row" style={topBuffer}>
+      <div className="row" style={consts.topBuffer}>
         <div className="col">
           <table className="w-120">
             <tbody>
               <tr>
-                <th style={headerWidth}>Name</th>
+                <th style={consts.headerWidth}>Name</th>
                 <td width="52%">: {recipientName}</td>
-                <th style={headerWidth}>NRIC/FIN/PP No.</th>
+                <th style={consts.headerWidth}>NRIC/FIN/PP No.</th>
                 <td>: {recipientNRIC}</td>
               </tr>
               <tr>
                 <td colSpan="2" />
-                <th style={headerWidth}>Date of Issue</th>
-                <td style={dateStyle}>
+                <th style={consts.headerWidth}>Date of Issue</th>
+                <td style={consts.dateStyle}>
                   :{" "}
                   {issuedOn}
                 </td>
               </tr>
               <tr>
-                <th style={headerWidth}>Personal Identifier</th>
+                <th style={consts.headerWidth}>Personal Identifier</th>
                 <td>: {studentId}</td>
               </tr>
             </tbody>
@@ -161,7 +94,7 @@ const Template = ({ certificate }) => {
         </div>
       </div>
 
-      <div className="row" style={topBuffer}>
+      <div className="row" style={consts.topBuffer}>
         <div className="col">
           <p>
             This transcript confirms that the student named above has
@@ -179,12 +112,12 @@ const Template = ({ certificate }) => {
               <tbody>
                 <tr>
                   <th>Year</th>
-                  <th style={centerTransData}>Semester</th>
+                  <th style={consts.centerTransData}>Semester</th>
                   <th>Course</th>
                   <th>Title</th>
-                  <th style={centerTransData}>Credit Units</th>
-                  <th style={centerTransData}>Result</th>
-                  <th style={centerTransData}>Grade Point</th>
+                  <th style={consts.centerTransData}>Credit Units</th>
+                  <th style={consts.centerTransData}>Result</th>
+                  <th style={consts.centerTransData}>Grade Point</th>
                 </tr>
 
                 {transcriptSection}
@@ -192,10 +125,10 @@ const Template = ({ certificate }) => {
                 {// Only display creditExempted when the field is in the JSON/Opencert file
                   creditExempted !== undefined && (
                     <tr>
-                      <td style={boldLabels} colSpan="4">
+                      <td style={consts.boldLabels} colSpan="4">
                         Credit Exemption:{" "}
                       </td>
-                      <td style={centerTransData}>
+                      <td style={consts.centerTransData}>
                         <b>{creditExempted}</b>
                       </td>
                     </tr>
@@ -204,35 +137,35 @@ const Template = ({ certificate }) => {
                 {// Only display creditRecog when the field is in the JSON/Opencert file
                   creditRecog !== undefined && (
                     <tr>
-                      <td style={boldLabels} colSpan="4">
+                      <td style={consts.boldLabels} colSpan="4">
                         Credit Recognition taken from approved institutions:{" "}
                       </td>
-                      <td style={centerTransData}>
+                      <td style={consts.centerTransData}>
                         <b>{creditRecog}</b>
                       </td>
                     </tr>
                   )}
 
                 <tr>
-                  <td style={boldLabels} colSpan="4">
+                  <td style={consts.boldLabels} colSpan="4">
                     Total number of credit units counted towards this award:{" "}
                   </td>
-                  <td style={centerTransData}>
+                  <td style={consts.centerTransData}>
                     <b>{totalCreditUnits}</b>
                   </td>
                 </tr>
 
                 <tr>
-                  <td style={boldLabels} colSpan="6">
+                  <td style={consts.boldLabels} colSpan="6">
                     Culmulative Grade Point Average:{" "}
                   </td>
-                  <td style={centerTransData}>
+                  <td style={consts.centerTransData}>
                     <b>{cGPA}</b>
                   </td>
                 </tr>
 
-                {displayHexSectionMod(certificate.transcript)}
-                {displayStarSectionMod(certificate.transcript)}
+                {functions.displayHexSectionMod(certificate.transcript)}
+                {functions.displayStarSectionMod(certificate.transcript)}
 
                 <tr>
                   <td colSpan="7">
@@ -247,13 +180,13 @@ const Template = ({ certificate }) => {
       )}
 
       <div className="row">
-        <div className="col-4" style={boldLabels}>
+        <div className="col-4" style={consts.boldLabels}>
           Title
         </div>
-        <div className="col-4" style={boldLabels}>
+        <div className="col-4" style={consts.boldLabels}>
           Classification
         </div>
-        <div className="col-4" style={boldLabels}>
+        <div className="col-4" style={consts.boldLabels}>
           Date of Conferment
         </div>
       </div>
