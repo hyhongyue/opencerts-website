@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import { MultiCertificateRenderer } from "template-utils/MultiCertificateRenderer";
 import Transcript from "./transcript";
 import TranscriptInfo from "./trans-info";
+import approvedAddresses from "../common/ApprovedAddresses";
 
 const templates = [
   {
-    id: "certificate",
+    id: "transcript",
     label: "Transcript",
     template: Transcript
   },
@@ -18,7 +19,10 @@ const templates = [
 ];
 
 const Template2019FebExample = ({ certificate }) => (
-  <MultiCertificateRenderer certificate={certificate} templates={templates} />
+  <MultiCertificateRenderer
+    certificate={certificate}
+    templates={templates}
+    whitelist={approvedAddresses} />
 );
 
 Template2019FebExample.propTypes = {

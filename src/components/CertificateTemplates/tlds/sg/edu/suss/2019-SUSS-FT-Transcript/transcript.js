@@ -47,6 +47,24 @@ const dateStyle = {
 const Template = ({ certificate }) => {
   // Declare what will be needed in the Transcript
   const transcriptData = get(certificate, "transcript", []);
+  const recipientName = get(certificate, "recipient.name").toUpperCase();
+  const recipientAdd = get(certificate, "recipient.address").toUpperCase();
+  const recipientAdd2 = get(certificate, "recipient.address2").toUpperCase();
+  const postalCode = get(certificate, "recipient.postalCode");
+
+  const recipientNRIC = get(certificate, "recipient.nric");
+  const issuedOn = format(get(certificate, "issuedOn"), "DD MMMM YYYY", { locale: engLocale });
+  const studentId = get(certificate, "recipient.studentId");
+
+  const creditRecog = get(certificate, "additionalData.numOfCreditRecognition");
+  const creditExempted = get(certificate, "additionalData.numOfCreditExempted");
+
+  const totalCreditUnits = get(certificate, "additionalData.totalCreditUnits");
+  const cGPA = get(certificate, "additionalData.cgpa");
+
+  const degreeType = get(certificate, "additionalData.degreeType");
+  const degreeClass = get(certificate, "additionalData.degreeClass");
+  const confermentDate = get(certificate, "additionalData.dateOfConferment");
 
   // Rendering an array of transcript data
   const transcriptSection = transcriptData.map((t, i) => (
@@ -108,10 +126,11 @@ const Template = ({ certificate }) => {
 
       <div className="row" style={topBuffer}>
         <div className="col">
-          {certificate.recipient.name.toUpperCase()} <br />
-          {certificate.recipient.address.toUpperCase()} <br />
-          {certificate.recipient.address2} <br />
-          SINGAPORE {certificate.recipient.postalCode} <br />
+          {recipientName} <br />
+          {recipientAdd} <br />
+          {// Only display recipientAdd2 when it is not empty.
+            recipientAdd2 !== "" && (recipientAdd2)} <br />
+          SINGAPORE {postalCode} <br />
         </div>
       </div>
 
@@ -121,25 +140,21 @@ const Template = ({ certificate }) => {
             <tbody>
               <tr>
                 <th style={headerWidth}>Name</th>
-                <td width="52%">: {certificate.recipient.name.toUpperCase()}</td>
+                <td width="52%">: {recipientName}</td>
                 <th style={headerWidth}>NRIC/FIN/PP No.</th>
-                <td>: {certificate.recipient.nric}</td>
+                <td>: {recipientNRIC}</td>
               </tr>
               <tr>
                 <td colSpan="2" />
                 <th style={headerWidth}>Date of Issue</th>
                 <td style={dateStyle}>
                   :{" "}
-                  {format(certificate.issuedOn, "DD MMMM YYYY", {
-                    locale: engLocale
-                  })}
+                  {issuedOn}
                 </td>
               </tr>
               <tr>
                 <th style={headerWidth}>Personal Identifier</th>
-                <td>: {certificate.recipient.studentId}</td>
-                <th style={headerWidth}>Page Count</th>
-                <td>: Page 1 of 2</td>
+                <td>: {studentId}</td>
               </tr>
             </tbody>
           </table>
@@ -171,35 +186,39 @@ const Template = ({ certificate }) => {
                   <th style={centerTransData}>Result</th>
                   <th style={centerTransData}>Grade Point</th>
                 </tr>
-                {transcriptSection}
-                {certificate.additionalData.numOfCreditRecognition !== undefined && (
-                  <tr>
-                    <td style={boldLabels} colSpan="4">
-                      Credit Recognition taken from approved institutions:{" "}
-                    </td>
-                    <td style={centerTransData}>
-                      <b>{certificate.additionalData.numOfCreditRecognition}</b>
-                    </td>
-                  </tr>
-                )}
 
-                {certificate.additionalData.numOfCreditExempted !== undefined && (
-                  <tr>
-                    <td style={boldLabels} colSpan="4">
-                      Credit Exemption:{" "}
-                    </td>
-                    <td style={centerTransData}>
-                      <b>{certificate.additionalData.numOfCreditExempted}</b>
-                    </td>
-                  </tr>
-                )}
+                {transcriptSection}
+
+                {// Only display creditExempted when the field is in the JSON/Opencert file
+                  creditExempted !== undefined && (
+                    <tr>
+                      <td style={boldLabels} colSpan="4">
+                        Credit Exemption:{" "}
+                      </td>
+                      <td style={centerTransData}>
+                        <b>{creditExempted}</b>
+                      </td>
+                    </tr>
+                  )}
+
+                {// Only display creditRecog when the field is in the JSON/Opencert file
+                  creditRecog !== undefined && (
+                    <tr>
+                      <td style={boldLabels} colSpan="4">
+                        Credit Recognition taken from approved institutions:{" "}
+                      </td>
+                      <td style={centerTransData}>
+                        <b>{creditRecog}</b>
+                      </td>
+                    </tr>
+                  )}
 
                 <tr>
                   <td style={boldLabels} colSpan="4">
                     Total number of credit units counted towards this award:{" "}
                   </td>
                   <td style={centerTransData}>
-                    <b>{certificate.additionalData.totalCreditUnits}</b>
+                    <b>{totalCreditUnits}</b>
                   </td>
                 </tr>
 
@@ -208,7 +227,7 @@ const Template = ({ certificate }) => {
                     Culmulative Grade Point Average:{" "}
                   </td>
                   <td style={centerTransData}>
-                    <b>{certificate.additionalData.cgpa}</b>
+                    <b>{cGPA}</b>
                   </td>
                 </tr>
 
@@ -240,12 +259,12 @@ const Template = ({ certificate }) => {
       </div>
 
       <div className="row">
-        <div className="col-4">{certificate.additionalData.degreeType}</div>
+        <div className="col-4">{degreeType}</div>
         <div className="col-4">
-          {certificate.additionalData.degreeClass}
+          {degreeClass}
         </div>
         <div className="col-4">
-          {certificate.additionalData.dateOfConferment}
+          {confermentDate}
         </div>
       </div>
 
