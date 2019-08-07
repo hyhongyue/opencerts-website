@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { get } from "lodash";
 import { format } from "date-fns";
 import { SUSS_LOGO } from "../common/images";
-import { DUMMY_SIGNATURE } from "../common/images";
 import * as consts from "../common/transcripStyle";
 import * as functions from "../common/functions"
 
@@ -29,6 +28,9 @@ const Template = ({ certificate }) => {
   const degreeType = get(certificate, "additionalData.degreeType");
   const degreeClass = get(certificate, "additionalData.degreeClass");
   const confermentDate = get(certificate, "additionalData.dateOfConferment");
+
+  const signature = get(certificate, "additionalData.signatories.0.signature");
+  const position = get(certificate, "additionalData.signatories.0.position");
 
   // Rendering an array of transcript data
   const transcriptSection = transcriptData.map((t, i) => (
@@ -203,9 +205,9 @@ const Template = ({ certificate }) => {
 
       <div className="row">
         <div className="col-4">
-          <img src={DUMMY_SIGNATURE} />
+          <img src={signature} />
           <hr />
-          <div> Registrar </div>
+          <div> {position} </div>
         </div>
       </div>
 
