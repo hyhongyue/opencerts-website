@@ -74,22 +74,19 @@ const Template = ({ certificate }) => {
           <table className="w-120">
             <tbody>
               <tr>
-                <th style={consts.headerWidth}>Name</th>
+                <th valign="top" style={consts.headerWidth}>Name</th>
                 <td width="52%">: {recipientName}</td>
-                <th style={consts.headerWidth}>NRIC/FIN/PP No.</th>
-                <td>: {recipientNRIC}</td>
+                <th valign="top" style={consts.headerWidth}>NRIC/FIN/PP No.</th>
+                <td valign="top">: {recipientNRIC}</td>
               </tr>
               <tr>
-                <td colSpan="2" />
+                <th valign="top" style={consts.headerWidth}>Personal Identifier</th>
+                <td valign="top">: {studentId}</td>
                 <th style={consts.headerWidth}>Date of Issue</th>
                 <td style={consts.dateStyle}>
                   :{" "}
                   {issuedOn}
                 </td>
-              </tr>
-              <tr>
-                <th style={consts.headerWidth}>Personal Identifier</th>
-                <td>: {studentId}</td>
               </tr>
             </tbody>
           </table>
